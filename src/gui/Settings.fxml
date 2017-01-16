@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="471.0" prefWidth="419.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groovycia2.SettingsController">
+   <children>
+      <Label layoutX="165.0" layoutY="23.0" text="Settings">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <TabPane layoutY="77.0" prefHeight="348.0" prefWidth="419.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab closable="false" text="General">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="396.0" prefWidth="419.0">
+                     <children>
+                        <CheckBox fx:id="chbxGenDebugmode" layoutX="14.0" layoutY="129.0" mnemonicParsing="false" onAction="#chbxGenClickedDebugmode" text="Enable Debug mode" />
+                        <Label layoutX="179.0" layoutY="14.0" text="General">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnGenUpdateCommunityXML" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#btnGenClickedUpdateCommunityXML" prefHeight="25.0" prefWidth="392.0" text="Update community.xml" />
+                        <Separator layoutY="49.0" prefHeight="3.0" prefWidth="419.0" />
+                        <Separator layoutY="174.0" prefHeight="3.0" prefWidth="419.0" />
+                        <CheckBox fx:id="chbxGenDisableXML" layoutX="14.0" layoutY="218.0" mnemonicParsing="false" onAction="#chbxGenClickedDisableXML" text="Disable auto-update (community.xml)" />
+                        <Label layoutX="173.0" layoutY="183.0" text="Database">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="chbxGenNameForTID" layoutX="14.0" layoutY="76.0" mnemonicParsing="false" onAction="#chbxGenClickedNameForTID" text="Create CIAs using this format: [Region] - [Name] [Title ID][Type].cia" />
+                        <CheckBox fx:id="chbxGenNoIndvFolders" layoutX="14.0" layoutY="102.0" mnemonicParsing="false" onAction="#chbxGenClickedNoIndvFolders" text="Disable creating CIAs in individual folders" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+          <Tab closable="false" text="Ticket Manager">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="425.0" prefWidth="419.0">
+                     <children>
+                        <CheckBox fx:id="chbxTMDefaultTicket" layoutX="14.0" layoutY="70.0" mnemonicParsing="false" onAction="#ticketTMSelected" text="Set default ticket.db" />
+                        <CheckBox fx:id="chbxTMDefaultOutput" layoutX="14.0" layoutY="149.0" mnemonicParsing="false" onAction="#outputTMSelected" text="Set default output folder" />
+                        <TextField fx:id="textTMTicket" editable="false" layoutX="14.0" layoutY="101.0" prefHeight="25.0" prefWidth="309.0" />
+                        <TextField fx:id="textTMOutput" editable="false" layoutX="14.0" layoutY="180.0" prefHeight="25.0" prefWidth="309.0" />
+                        <Button fx:id="btnTMTicketSelect" disable="true" layoutX="333.0" layoutY="101.0" mnemonicParsing="false" onAction="#btnTMClickedTicketSelect" prefHeight="25.0" prefWidth="72.0" text="Select" />
+                        <Button fx:id="btnTMOutputSelect" disable="true" layoutX="333.0" layoutY="180.0" mnemonicParsing="false" onAction="#btnTMClickedOutputSelect" prefHeight="25.0" prefWidth="72.0" text="Select" />
+                        <Label layoutX="148.0" layoutY="14.0" text="Ticket Manager">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutY="49.0" prefHeight="3.0" prefWidth="419.0" />
+                        <CheckBox fx:id="chbxTMSystemTitles" layoutX="14.0" layoutY="230.0" mnemonicParsing="false" onAction="#chbxTMClickedSystemTitles" text="Allow Downloading Ticket.db System Titles" />
+                        <CheckBox fx:id="chbxTMNonUnique" layoutX="14.0" layoutY="268.0" mnemonicParsing="false" onAction="#chbxTMClickedNonUnique" text="Allow Downloading Titles Without a Unique ConsoleID [00000000]" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab closable="false" text="Title Downloader">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="142.0" layoutY="14.0" text="Title Downloader">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutY="49.0" prefHeight="3.0" prefWidth="419.0" />
+                        <CheckBox fx:id="chbxTDDefaultFile" layoutX="14.0" layoutY="70.0" mnemonicParsing="false" onAction="#chbxTDClickedDefaultFile" text="Set default encTitleKey.bin" />
+                        <CheckBox fx:id="chbxTDDefaultFolder" layoutX="14.0" layoutY="149.0" mnemonicParsing="false" onAction="#chbxTDClickedDefaultFolder" text="Set default output folder" />
+                        <Button fx:id="btnTDFolder" disable="true" layoutX="333.0" layoutY="180.0" mnemonicParsing="false" onAction="#btnTDClickedFolder" prefHeight="25.0" prefWidth="72.0" text="Select" />
+                        <Button fx:id="btnTDFile" disable="true" layoutX="333.0" layoutY="101.0" mnemonicParsing="false" onAction="#btnTDClickedFile" prefHeight="25.0" prefWidth="72.0" text="Select" />
+                        <TextField fx:id="textTDFile" layoutX="14.0" layoutY="101.0" prefHeight="25.0" prefWidth="309.0" />
+                        <TextField fx:id="textTDFolder" layoutX="14.0" layoutY="180.0" prefHeight="25.0" prefWidth="309.0" />
+                        <CheckBox fx:id="chbxTDDefaultTikFolder" layoutX="14.0" layoutY="227.0" mnemonicParsing="false" onAction="#chbxTDClickedDefaultTikFolder" text="Set default .tik output folder" />
+                        <Button fx:id="btnTDTikFolder" disable="true" layoutX="333.0" layoutY="260.0" mnemonicParsing="false" onAction="#btnTDClickedTikFolder" prefHeight="25.0" prefWidth="72.0" text="Select" />
+                        <TextField fx:id="textTDTikFolder" layoutX="14.0" layoutY="260.0" prefHeight="25.0" prefWidth="309.0" />
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+            <Tab closable="false" text="About">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label layoutX="182.0" layoutY="14.0" text="Credits">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Separator layoutY="49.0" prefHeight="3.0" prefWidth="419.0" />
+                        <Label layoutX="141.0" layoutY="63.0" text="CDN-FX">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="259.0" layoutY="63.0" text="Ptrk25">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="38.0" layoutY="97.0" text="FunkyCIA / FunKeyCIA">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="259.0" layoutY="97.0" text="cearp">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="38.0" layoutY="149.0" text="Testers">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="38.0" layoutY="177.0" text="Cha0sEm3rald&#10;capito27&#10;Madridi&#10;Rohul1997">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="164.0" layoutY="149.0" text="Community XML">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="164.0" layoutY="177.0" text="Cha0s Em3rald&#10;Jimmsu&#10;Madridi">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="323.0" layoutY="149.0" text="Icon">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="323.0" layoutY="177.0" text="alirezay">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <Separator layoutY="424.0" prefHeight="3.0" prefWidth="419.0" />
+      <Button fx:id="btnOK" layoutX="254.0" layoutY="435.0" mnemonicParsing="false" onAction="#btnClickedOK" prefHeight="25.0" prefWidth="72.0" text="OK" />
+      <Button fx:id="btnCancel" layoutX="333.0" layoutY="435.0" mnemonicParsing="false" onAction="#btnClickedCancel" prefHeight="25.0" prefWidth="72.0" text="Cancel" />
+      <Separator layoutY="76.0" prefHeight="3.0" prefWidth="419.0" />
+      <Label layoutX="14.0" layoutY="439.0" text="Version dev-2.2" />
+   </children>
+</AnchorPane>

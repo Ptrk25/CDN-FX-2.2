@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CDN-FX:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CDN_FX_jar</output-path>
+    <root id="archive" name="CDN-FX.jar">
+      <element id="module-output" name="CDN-FX" />
+    </root>
+  </artifact>
+</component>

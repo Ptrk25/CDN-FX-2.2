@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="1112.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="groovycia2.CDNFXController">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <Menu mnemonicParsing="false" text="Ticket Manager">
+                     <items>
+                        <MenuItem fx:id="menuTMOpenTicketDB" mnemonicParsing="false" onAction="#menuTMClickedOpenTicket" text="Open ticket.db" />
+                        <MenuItem fx:id="menuTMSelectOutputFolder" mnemonicParsing="false" onAction="#menuClickedSelectOutput" text="Select output folder" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Titledownloader">
+                    <items>
+                      <MenuItem fx:id="menuTDSelectOutputfolder" mnemonicParsing="false" onAction="#menuTDClickedSelectOutputfolder" text="Select output folder" />
+                        <MenuItem fx:id="menuTDSelectTikOutputfolder" mnemonicParsing="false" onAction="#menuTDClickedSelectTikOutputfolder" text="Select .tik output folder" />
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="menuClose" mnemonicParsing="false" onAction="#close" text="Close" />
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Options">
+            <items>
+                  <MenuItem fx:id="menuSettings" mnemonicParsing="false" onAction="#menuClickedSettings" text="Settings" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem fx:id="menuWebsite" mnemonicParsing="false" onAction="#menuClickedWebsite" text="GitHub Page" />
+                  <MenuItem fx:id="menuThread" mnemonicParsing="false" onAction="#menuClickedThread" text="GBATemp Thread" />
+               </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <TabPane fx:id="tabPane" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+        <tabs>
+          <Tab fx:id="tabTM" closable="false" text="Ticket Manager">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <SplitPane dividerPositions="0.421" orientation="VERTICAL" prefHeight="584.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="226.0">
+                                 <children>
+                                    <Label layoutX="83.0" layoutY="14.0" prefHeight="27.0" prefWidth="61.0" text="Tickets" textAlignment="CENTER" AnchorPane.leftAnchor="83.0" AnchorPane.rightAnchor="82.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="63.0" text="Tickets:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="80.0" text="Unique Tickets:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="97.0" text="Duplicates:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="114.0" text="System Tickets:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="153.0" text="eShop Tickets:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="170.0" text="Unique eShop Tickets:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="187.0" text="Duplicates (e-Tickets):">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="204.0" text="Tickets not from your eShop:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTMTicketCount" layoutX="194.0" layoutY="63.0" text="0" />
+                                    <Label fx:id="lblTMUniqueTicketCount" layoutX="194.0" layoutY="80.0" text="0" />
+                                    <Label fx:id="lblTMDuplicatesTicketCount" layoutX="194.0" layoutY="97.0" text="0" />
+                                    <Label fx:id="lblTMSystemTicketCount" layoutX="194.0" layoutY="114.0" text="0" />
+                                    <Label fx:id="lblTMEShopTicketCount" layoutX="194.0" layoutY="153.0" text="0" />
+                                    <Label fx:id="lblTMUniqueEShopTicketCount" layoutX="194.0" layoutY="170.0" text="0" />
+                                    <Label fx:id="lblTMEShopDuplicatesCount" layoutX="194.0" layoutY="187.0" text="0" />
+                                    <Label fx:id="lblTMTicketNotFromYourEShopCount" layoutX="194.0" layoutY="204.0" text="0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="226.0">
+                                 <children>
+                                    <Label layoutX="58.0" layoutY="14.0" text="App Category">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="listTMCategory" layoutX="15.0" layoutY="56.0" prefHeight="262.0" prefWidth="196.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="56.0" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </left>
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TableView fx:id="tableTMTickets" prefHeight="538.0" prefWidth="675.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TableColumn fx:id="columnTMName" prefWidth="252.0" text="Name" />
+                                    <TableColumn fx:id="columnTMRegion" prefWidth="60.0" text="Region" />
+                                    <TableColumn fx:id="columnTMSerial" prefWidth="73.0" text="Serial" />
+                                    <TableColumn fx:id="columnTMType" prefWidth="56.0" text="Type" />
+                                    <TableColumn fx:id="columnTMTitleID" prefWidth="127.0" text="TitleID" />
+                                    <TableColumn fx:id="columnTMConsoleID" prefWidth="76.0" text="ConsoleID" />
+                                    <TableColumn fx:id="columnTMDL" minWidth="0.0" prefWidth="30.0" text="DL" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="textTMSearch" disable="true" layoutX="14.0" layoutY="550.0" onAction="#textTMClickedEnter" prefHeight="25.0" prefWidth="652.0" promptText="Search... (Press enter to search)" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="9.0" />
+                           </children>
+                        </AnchorPane>
+                     </center>
+                     <right>
+                        <SplitPane dividerPositions="0.4777" orientation="VERTICAL" prefHeight="584.0" prefWidth="209.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="279.0" prefWidth="198.0">
+                                 <children>
+                                    <Label layoutX="69.0" layoutY="14.0" text="Options">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="chbxTMBuildCIA" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" selected="true" text="Build CIA" />
+                                    <CheckBox fx:id="chbxTMPatchDLC" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#chbxTMSelectedDLC" selected="true" text="Patch DLC" />
+                                    <CheckBox fx:id="chbxTMPatchDemo" layoutX="14.0" layoutY="159.0" mnemonicParsing="false" onAction="#chbxTMSelectedDemo" selected="true" text="Patch Demo" />
+                                    <CheckBox fx:id="chbxTMPersonal" layoutX="14.0" layoutY="205.0" mnemonicParsing="false" onAction="#chbxTMSelectedPersonal" text="Personal" />
+                                    <Label layoutX="10.0" layoutY="89.0" text="Unlock DLC content:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="136.0" text="Patch Demo Play Count:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="182.0" text="Use unique ConsoleID:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnRebuildRawContent" disable="true" layoutX="12.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnClickedRebuildRawContent" prefHeight="25.0" prefWidth="183.0" text="Rebuild raw content" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Button fx:id="btnTMDownload" disable="true" layoutX="12.0" layoutY="264.0" mnemonicParsing="false" onAction="#btnTMClickedDownload" prefHeight="25.0" prefWidth="183.0" text="Download" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+                                    <ProgressBar fx:id="progressbarTMDownload" layoutX="12.0" layoutY="234.0" prefHeight="22.0" prefWidth="183.0" progress="0.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+                                    <Label layoutX="13.0" layoutY="42.0" text="Title:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="59.0" text="Attempt:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="76.0" text="Failed:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="157.0" text="TitleID:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="174.0" text="TMD:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="191.0" text="Files:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="208.0" text="Downloaded:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="119.0" text="Current Title">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTMTitleCount" layoutX="86.0" layoutY="42.0" text="0/0" />
+                                    <Label fx:id="lblTMAttemptCount" layoutX="86.0" layoutY="59.0" text="0/0" />
+                                    <Label fx:id="lblTMFailedCount" layoutX="92.0" layoutY="76.0" text="0" />
+                                    <Label fx:id="lblTMTitleID" layoutX="80.0" layoutY="157.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="157.0" />
+                                    <Label fx:id="lblTMTMD" layoutX="168.0" layoutY="174.0" text="-" />
+                                    <Label fx:id="lblTMFilesCount" layoutX="165.0" layoutY="191.0" text="0/0" AnchorPane.rightAnchor="24.0" AnchorPane.topAnchor="191.0" />
+                                    <Label fx:id="lblTMDownloadStats" layoutX="125.0" layoutY="208.0" text="0 MB / 0 MB" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="208.0" />
+                                    <Label layoutX="13.0" layoutY="140.0" text="Name:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTMTitleName" layoutX="173.0" layoutY="140.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="140.0" />
+                                    <ImageView fx:id="imgvTMIcon" fitHeight="48.0" fitWidth="48.0" layoutX="141.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="63.0" layoutY="12.0" text="Download">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </right>
+                  </BorderPane>
+               </content>
+          </Tab>
+            <Tab fx:id="tabTDA" closable="false" text="Title Downloader [encTitleKey.bin]">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <SplitPane dividerPositions="0.4570446735395189" orientation="VERTICAL" prefHeight="200.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="281.0" prefWidth="226.0">
+                                 <children>
+                                    <Label layoutX="47.0" layoutY="14.0" text="encTitleKeys.bin">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnTDAOpenFile" layoutX="13.0" layoutY="224.0" mnemonicParsing="false" onAction="#btnTDAClickedOpenFile" prefHeight="25.0" prefWidth="201.0" text="Open" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="13.0" AnchorPane.rightAnchor="12.0" />
+                                    <Label layoutX="14.0" layoutY="41.0" text="Total Entries:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="68.0" text="eShop Apps:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="100.0" text="Demo:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="115.0" text="Updates:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="85.0" text="DLP:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="131.0" text="DLC:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="148.0" text="DSi Ware:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="165.0" text="DSi System Apps:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="182.0" text="DSi System Data:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="200.0" text="System:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTDATotalCount" layoutX="188.0" layoutY="41.0" text="0" />
+                                    <Label fx:id="lblTDAeShopCount" layoutX="188.0" layoutY="68.0" text="0" />
+                                    <Label fx:id="lblTDADemoCount" layoutX="188.0" layoutY="100.0" text="0" />
+                                    <Label fx:id="lblTDAUpdatesCount" layoutX="188.0" layoutY="115.0" text="0" />
+                                    <Label fx:id="lblTDADLPCount" layoutX="188.0" layoutY="85.0" text="0" />
+                                    <Label fx:id="lblTDADLCCount" layoutX="188.0" layoutY="131.0" text="0" />
+                                    <Label fx:id="lblTDADSiWareCount" layoutX="188.0" layoutY="148.0" text="0" />
+                                    <Label fx:id="lblTDADSiSysAppsCount" layoutX="188.0" layoutY="165.0" text="0" />
+                                    <Label fx:id="lblTDADSiSysDataCount" layoutX="188.0" layoutY="182.0" text="0" />
+                                    <Label fx:id="lblTDASystemCount" layoutX="188.0" layoutY="200.0" text="0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <ListView fx:id="listTDACategory" layoutX="15.0" layoutY="47.0" prefHeight="252.0" prefWidth="196.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="47.0" />
+                                    <Label layoutX="58.0" layoutY="14.0" text="App Category">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </left>
+                     <right>
+                        <SplitPane dividerPositions="0.4777" orientation="VERTICAL" prefHeight="209.0" prefWidth="209.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Label layoutX="69.0" layoutY="14.0" text="Options">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="chbxTDABuildCIA" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" selected="true" text="Build CIA" />
+                                    <CheckBox fx:id="chbxTDAPatchDLC" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#chbxTDASelectedDLC" selected="true" text="Patch DLC" />
+                                    <CheckBox fx:id="chbxTDAPatchDemo" layoutX="14.0" layoutY="159.0" mnemonicParsing="false" onAction="#chbxTDASelectedDemo" selected="true" text="Patch Demo" />
+                                    <Label layoutX="10.0" layoutY="89.0" text="Unlock DLC content:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="136.0" text="Patch Demo Play Count:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnTDAGenTickets" disable="true" layoutX="14.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnTDAClickedGenTickets" prefHeight="25.0" prefWidth="180.0" text="Generate Tickets (.tik)" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                                    <Button fx:id="btnTDARebuildRawContent" disable="true" layoutX="14.0" layoutY="208.0" mnemonicParsing="false" onAction="#btnTDAClickedRebuildRawContent" prefHeight="25.0" prefWidth="177.0" text="Rebuild raw content" AnchorPane.bottomAnchor="42.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Button fx:id="btnTDADownload" disable="true" layoutX="12.0" layoutY="264.0" mnemonicParsing="false" onAction="#btnTDAClickedDownload" prefHeight="25.0" prefWidth="183.0" text="Download" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+                                    <ProgressBar fx:id="progressbarTDADownload" layoutX="12.0" layoutY="234.0" prefHeight="22.0" prefWidth="183.0" progress="0.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+                                    <Label layoutX="13.0" layoutY="42.0" text="Title:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="59.0" text="Attempt:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="76.0" text="Failed:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="157.0" text="TitleID:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="174.0" text="TMD:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="191.0" text="Files:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="208.0" text="Downloaded:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="119.0" text="Current Title">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTDATitleCount" layoutX="86.0" layoutY="42.0" text="0/0" />
+                                    <Label fx:id="lblTDAAttemptCount" layoutX="86.0" layoutY="59.0" text="0/0" />
+                                    <Label fx:id="lblTDAFailedCount" layoutX="92.0" layoutY="76.0" text="0" />
+                                    <Label fx:id="lblTDATitleID" layoutX="76.0" layoutY="157.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="157.0" />
+                                    <Label fx:id="lblTDATMD" layoutX="168.0" layoutY="174.0" text="-" />
+                                    <Label fx:id="lblTDAFilesCount" layoutX="165.0" layoutY="191.0" text="0/0" AnchorPane.rightAnchor="24.0" />
+                                    <Label fx:id="lblTDADownloadStats" layoutX="125.0" layoutY="208.0" text="0 MB / 0 MB" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="208.0" />
+                                    <Label layoutX="13.0" layoutY="140.0" text="Name:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTDATitleName" layoutX="173.0" layoutY="140.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="140.0" />
+                                    <ImageView fx:id="imgvTDAIcon" fitHeight="48.0" fitWidth="48.0" layoutX="141.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="63.0" layoutY="12.0" text="Download">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </right>
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TableView fx:id="tableTDATickets" prefHeight="538.0" prefWidth="675.0" AnchorPane.bottomAnchor="46.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TableColumn fx:id="columnTDAName" prefWidth="307.0" text="Name" />
+                                    <TableColumn fx:id="columnTDARegion" prefWidth="59.0" text="Region" />
+                                    <TableColumn fx:id="columnTDASerial" prefWidth="68.0" text="Serial" />
+                                    <TableColumn fx:id="columnTDAType" prefWidth="72.0" text="Type" />
+                                    <TableColumn fx:id="columnTDATitleID" prefWidth="140.0" text="TitleID" />
+                                    <TableColumn fx:id="columnTDADL" minWidth="0.0" prefWidth="28.0" text="DL" />
+                                 </columns>
+                              </TableView>
+                              <TextField fx:id="textTDASearch" disable="true" layoutX="14.0" layoutY="550.0" onAction="#textTDAClickedEnter" prefHeight="25.0" prefWidth="652.0" promptText="Search... (Press enter to search)" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="9.0" />
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tabTDM" closable="false" text="Title Downloader [Manual]">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <right>
+                        <SplitPane dividerPositions="0.4777" orientation="VERTICAL" prefHeight="209.0" prefWidth="209.0" BorderPane.alignment="CENTER">
+                          <items>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Label layoutX="69.0" layoutY="14.0" text="Options">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <CheckBox fx:id="chbxTDMBuildCIA" layoutX="14.0" layoutY="64.0" mnemonicParsing="false" selected="true" text="Build CIA" />
+                                    <CheckBox fx:id="chbxTDMPatchDLC" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#chbxTDMSelectedDLC" selected="true" text="Patch DLC" />
+                                    <CheckBox fx:id="chbxTDMPatchDemo" layoutX="14.0" layoutY="159.0" mnemonicParsing="false" onAction="#chbxTDMSelectedDemo" selected="true" text="Patch Demo" />
+                                    <Label layoutX="10.0" layoutY="89.0" text="Unlock DLC content:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="10.0" layoutY="136.0" text="Patch Demo Play Count:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Button fx:id="btnTDMGenTicket" layoutX="14.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnTDMClickedGenTicket" prefHeight="25.0" prefWidth="180.0" text="Generate Ticket (.tik)" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Button fx:id="btnTDMDownload" layoutX="12.0" layoutY="264.0" mnemonicParsing="false" onAction="#btnTDMClickedDownload" prefHeight="25.0" prefWidth="183.0" text="Download" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+                                    <ProgressBar fx:id="progressbarTDMDownload" layoutX="12.0" layoutY="234.0" prefHeight="22.0" prefWidth="183.0" progress="0.0" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="12.0" AnchorPane.rightAnchor="12.0" />
+                                    <Label layoutX="13.0" layoutY="42.0" text="Title:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="59.0" text="Attempt:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="76.0" text="Failed:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="157.0" text="TitleID:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="174.0" text="TMD:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="191.0" text="Files:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="208.0" text="Downloaded:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="13.0" layoutY="119.0" text="Current Title">
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTDMTitleCount" layoutX="86.0" layoutY="42.0" text="0/0" />
+                                    <Label fx:id="lblTDMAttemptCount" layoutX="86.0" layoutY="59.0" text="0/0" />
+                                    <Label fx:id="lblTDMFailedCount" layoutX="92.0" layoutY="76.0" text="0" />
+                                    <Label fx:id="lblTDMTitleID" layoutX="76.0" layoutY="157.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="157.0" />
+                                    <Label fx:id="lblTDMTMD" layoutX="168.0" layoutY="174.0" text="-" />
+                                    <Label fx:id="lblTDMFilesCount" layoutX="165.0" layoutY="191.0" text="0/0" AnchorPane.rightAnchor="24.0" />
+                                    <Label fx:id="lblTDMDownloadStats" layoutX="125.0" layoutY="208.0" text="0 MB / 0 MB" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="208.0" />
+                                    <Label layoutX="13.0" layoutY="140.0" text="Name:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTDMTitleName" layoutX="62.0" layoutY="140.0" AnchorPane.rightAnchor="23.0" AnchorPane.topAnchor="140.0" />
+                                    <ImageView fx:id="imgvTDMIcon" fitHeight="48.0" fitWidth="48.0" layoutX="141.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../resources/icon.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label layoutX="63.0" layoutY="12.0" text="Download">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </right>
+                     <center>
+                        <SplitPane dividerPositions="0.15463917525773196" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="93.0" prefWidth="901.0">
+                                 <children>
+                                    <Label layoutX="14.0" layoutY="14.0" text="TitleID" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="835.0" AnchorPane.topAnchor="14.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="43.0" text="Encrypted Titlekey" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="742.0" AnchorPane.topAnchor="43.0">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <TextField fx:id="textTDMTitleID" layoutX="169.0" layoutY="15.0" prefHeight="25.0" prefWidth="724.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="15.0" />
+                                    <TextField fx:id="textTDMEncryptedTitleKey" layoutX="169.0" layoutY="44.0" prefHeight="25.0" prefWidth="724.0" AnchorPane.leftAnchor="169.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="44.0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                          </items>
+                        </SplitPane>
+                     </center>
+                  </BorderPane>
+               </content>
+            </Tab>
+          <Tab fx:id="tabTBV" closable="false" text="Title Database Viewer">
+               <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <SplitPane dividerPositions="0.39347079037800686" orientation="VERTICAL" prefHeight="584.0" prefWidth="228.0" BorderPane.alignment="CENTER">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Label layoutX="76.0" layoutY="14.0" text="Database">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="41.0" text="Total Entries:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="68.0" text="eShop Apps:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="100.0" text="Demo:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="115.0" text="Updates:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="85.0" text="DLP:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="131.0" text="DLC:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="148.0" text="DSi Ware:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="165.0" text="DSi System Apps:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="182.0" text="DSi System Data:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label layoutX="14.0" layoutY="200.0" text="System:">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="lblTDVTotalCount" layoutX="188.0" layoutY="42.0" text="0" />
+                                    <Label fx:id="lblTDVeShopAppCount" layoutX="188.0" layoutY="69.0" text="0" />
+                                    <Label fx:id="lblTDVDemoCount" layoutX="188.0" layoutY="101.0" text="0" />
+                                    <Label fx:id="lblTDVUpdatesCount" layoutX="188.0" layoutY="116.0" text="0" />
+                                    <Label fx:id="lblTDVDLPCount" layoutX="188.0" layoutY="86.0" text="0" />
+                                    <Label fx:id="lblTDVDLCCount" layoutX="188.0" layoutY="132.0" text="0" />
+                                    <Label fx:id="lblTDVDSiWareCount" layoutX="188.0" layoutY="149.0" text="0" />
+                                    <Label fx:id="lblTDVDSiSysAppsCount" layoutX="188.0" layoutY="166.0" text="0" />
+                                    <Label fx:id="lblTDVDSiSysDataCount" layoutX="188.0" layoutY="183.0" text="0" />
+                                    <Label fx:id="lblTDVSystemCount" layoutX="188.0" layoutY="201.0" text="0" />
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="226.0">
+                                 <children>
+                                    <Label layoutX="58.0" layoutY="14.0" text="App Category">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <ListView fx:id="listTDVCategory" layoutX="15.0" layoutY="48.0" prefHeight="286.0" prefWidth="196.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="48.0" />
+                                 </children>
+                              </AnchorPane>
+                          </items>
+                        </SplitPane>
+                     </left>
+                     <center>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                           <children>
+                              <TableView fx:id="tableTDVTickets" prefHeight="532.0" prefWidth="884.0" AnchorPane.bottomAnchor="52.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                  <TableColumn fx:id="columnTDVName" prefWidth="500.0" text="Name" />
+                                  <TableColumn fx:id="columnTDVRegion" prefWidth="68.0" text="Region" />
+                                    <TableColumn fx:id="columnTDVSerial" prefWidth="81.0" text="Serial" />
+                                    <TableColumn fx:id="columnTDVType" prefWidth="83.0" text="Type" />
+                                    <TableColumn fx:id="columnTDVTitleID" prefWidth="151.0" text="TitleID" />
+                                </columns>
+                              </TableView>
+                              <TextField fx:id="textTDVSearch" disable="true" layoutX="14.0" layoutY="547.0" onAction="#textTDVClickedEnter" prefHeight="25.0" prefWidth="858.0" promptText="Search..." AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="12.0" />
+                           </children>
+                        </AnchorPane>
+                     </center>
+                  </BorderPane>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </center>
+</BorderPane>

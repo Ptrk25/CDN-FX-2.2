@@ -1,0 +1,76 @@
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+}
+
+#tableTMTickets .table-column#columnTMRegion {
+    -fx-alignment: CENTER;
+}
+
+#tableTMTickets .table-column#columnTMSerial {
+    -fx-alignment: CENTER;
+}
+
+#tableTMTickets .table-column#columnTMType {
+    -fx-alignment: CENTER;
+}
+
+#tableTMTickets .table-column#columnTMTitleID {
+    -fx-alignment: CENTER;
+}
+
+#tableTMTickets .table-column#columnTMConsoleID {
+    -fx-alignment: CENTER;
+}
+
+#tableTMTickets .table-column#columnTMDownload {
+    -fx-alignment: CENTER;
+}
+
+#tableTDVTickets .table-column#columnTDVRegion {
+    -fx-alignment: CENTER;
+}
+
+#tableTDVTickets .table-column#columnTDVSerial {
+    -fx-alignment: CENTER;
+}
+
+#tableTDVTickets .table-column#columnTDVType {
+    -fx-alignment: CENTER;
+}
+
+#tableTDVTickets .table-column#columnTDVTitleID {
+    -fx-alignment: CENTER;
+}
+
+#tableTDATickets .table-column#columnTDARegion {
+    -fx-alignment: CENTER;
+}
+
+#tableTDATickets .table-column#columnTDASerial {
+    -fx-alignment: CENTER;
+}
+
+#tableTDATickets .table-column#columnTDAType {
+    -fx-alignment: CENTER;
+}
+
+#tableTDATickets .table-column#columnTDATitleID {
+    -fx-alignment: CENTER;
+}
+
+#tableTDATickets .table-column#columnTDADownload {
+    -fx-alignment: CENTER;
+}
+
+
+#listTMCategory .list-cell {
+    -fx-alignment: center;
+}
+
+#listTDVCategory .list-cell {
+    -fx-alignment: center;
+}
+
+#listTDACategory .list-cell {
+    -fx-alignment: center;
+}
