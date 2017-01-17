@@ -12,18 +12,10 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
 public class Tools {
-private static String make_cdn, ctrtool, makerom;
+private static String make_cdn;
 	
 	public static String getMakeCDN(){
 		return make_cdn;
-	}
-
-	public static String getCtrtool(){
-		return ctrtool;
-	}
-
-	public static String getMakerom(){
-		return makerom;
 	}
 	
 	private static URI getJarURI() throws URISyntaxException
@@ -41,7 +33,7 @@ private static String make_cdn, ctrtool, makerom;
 	        return (uri);
 	    }
 
-	    private static URI getFile(final URI where, final String fileName)throws ZipException, IOException
+	    private static URI getFile(final URI where, final String fileName)throws IOException
 	    {
 	        final File location;
 	        final URI fileURI;
@@ -135,7 +127,7 @@ private static String make_cdn, ctrtool, makerom;
 	    
 	    public static void unpackFiles(){
 	    	URI uri = null;
-	        final URI exe, exe2, exe3;
+	        final URI exe;
 
 	        try {
 				uri = getJarURI();
@@ -147,21 +139,23 @@ private static String make_cdn, ctrtool, makerom;
 			}
 	        try {
 	        	if(DetectOS.isWindows()){
-	        		exe = getFile(uri, "make_cdn_cia.exe");
-					//exe2 = getFile(uri, "/tools/ctrtool.exe");
-					//exe3 = getFile(uri, "/tools/makerom.exe");
+                    String arch = System.getenv("PROCESSOR_ARCHITECTURE");
+                    String wow64Arch = System.getenv("PROCESSOR_ARCHITEW6432");
+
+                    String realArch = arch.endsWith("64") || wow64Arch != null && wow64Arch.endsWith("64")
+                            ? "64" : "32";
+
+                    if(realArch.equals("64"))
+	        		    exe = getFile(uri, "make_cdn_cia64.exe");
+                    else
+                        exe = getFile(uri, "make_cdn_cia32.exe");
+
 	        	}else if(DetectOS.isMac()){
-	        		exe = getFile(uri, "make_cdn_cia_mac");
-					//exe2 = getFile(uri, "/tools/ctrtool_mac");
-					//exe3 = getFile(uri, "/tools/makerom_mac");
-	        	}else{
+					exe = getFile(uri, "make_cdn_cia_mac");
+				}else{
 	        		exe = getFile(uri, "make_cdn_cia_linux");
-					exe2 = getFile(uri, "/tools/ctrtool_linux");
-					exe3 = getFile(uri, "/tools/makerom_linux");
 	        	}
 				make_cdn = exe.toString().substring(6);
-				//ctrtool = exe2.toString().substring(6);
-				//makerom = exe3.toString().substring(6);
 			} catch (ZipException e) {
 				// TODO Auto-generated catch block
 				StringWriter errors = new StringWriter();

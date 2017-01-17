@@ -11,31 +11,16 @@ import java.util.logging.Level;
 public class Updater {
 
     private final String version = "dev-2.2";
-    private String updateSite = "http://ptrk25.github.io/GroovyFX/program/";
     private String updateURL = "http://ptrk25.github.io/GroovyFX/program/";
-    private String changelogURL = "http://ptrk25.github.io/GroovyFX/program/change.log";
 
     public Updater(){
 
-        String arch = System.getenv("PROCESSOR_ARCHITECTURE");
-        String wow64Arch = System.getenv("PROCESSOR_ARCHITEW6432");
-
-        String realArch = arch.endsWith("64") || wow64Arch != null && wow64Arch.endsWith("64")
-                ? "64" : "32";
-
-        if(realArch.equals("64")){
-            updateSite = updateSite + "check64.txt";
-            updateURL = updateURL + "gfx64.jar";
-        }else{
-            updateSite = updateSite + "check32.txt";
-            updateURL = updateURL + "gfx32.jar";
-        }
     }
 
     public boolean checkForUpdates(){
         DebugLogger.log("Checking for Update...", Level.INFO);
         try{
-            BufferedReader in = new BufferedReader(new InputStreamReader(new URL(updateSite).openStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(new URL(updateURL + "version.txt").openStream()));
             String inputLine, content="";
 
             while((inputLine = in.readLine()) != null){
@@ -57,7 +42,7 @@ public class Updater {
         try{
             DebugLogger.log("Updating...", Level.INFO);
             String path = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
-            ReadableByteChannel in = Channels.newChannel(new URL(updateURL).openStream());
+            ReadableByteChannel in = Channels.newChannel(new URL(updateURL + "gfx.jar").openStream());
             FileChannel out = new FileOutputStream(path).getChannel();
 
             out.transferFrom(in, 0, Long.MAX_VALUE);
@@ -75,7 +60,7 @@ public class Updater {
 
     public String getChangelog(){
         try{
-            BufferedReader in = new BufferedReader(new InputStreamReader(new URL(changelogURL).openStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(new URL(updateURL + "change.log").openStream()));
             String inputLine, updatemessage = "";
             ArrayList<String> content = new ArrayList<>();
 

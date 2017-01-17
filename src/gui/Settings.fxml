@@ -29,7 +29,7 @@
                               <Font size="18.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnGenUpdateCommunityXML" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#btnGenClickedUpdateCommunityXML" prefHeight="25.0" prefWidth="392.0" text="Update community.xml" />
+                        <Button fx:id="btnGenUpdateCommunityXML" layoutX="14.0" layoutY="280.0" mnemonicParsing="false" onAction="#btnGenClickedUpdateCommunityXML" prefHeight="25.0" prefWidth="392.0" text="Update community.xml" />
                         <Separator layoutY="49.0" prefHeight="3.0" prefWidth="419.0" />
                         <Separator layoutY="174.0" prefHeight="3.0" prefWidth="419.0" />
                         <CheckBox fx:id="chbxGenDisableXML" layoutX="14.0" layoutY="218.0" mnemonicParsing="false" onAction="#chbxGenClickedDisableXML" text="Disable auto-update (community.xml)" />
@@ -40,6 +40,7 @@
                         </Label>
                         <CheckBox fx:id="chbxGenNameForTID" layoutX="14.0" layoutY="76.0" mnemonicParsing="false" onAction="#chbxGenClickedNameForTID" text="Create CIAs using this format: [Region] - [Name] [Title ID][Type].cia" />
                         <CheckBox fx:id="chbxGenNoIndvFolders" layoutX="14.0" layoutY="102.0" mnemonicParsing="false" onAction="#chbxGenClickedNoIndvFolders" text="Disable creating CIAs in individual folders" />
+                        <CheckBox fx:id="chbxGenDisable3DSDBXML" layoutX="14.0" layoutY="248.0" mnemonicParsing="false" onAction="#chbxGenClickedDisable3DSDBXML" text="Disable auto-update (3dsdb.xml)" />
                      </children>
                   </AnchorPane>
               </content>

@@ -26,6 +26,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         DebugLogger.init();
 
+        /*
         Updater updater = new Updater();
         if(updater.checkForUpdates()){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -83,7 +84,7 @@ public class Main extends Application {
                     alert2.showAndWait();
                 }
             }
-        }
+        }*/
 
         try{
             FXMLLoader loader = new FXMLLoader();

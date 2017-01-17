@@ -22,6 +22,7 @@ public class SettingsController implements Initializable{
             chbxTMSystemTitles,
             chbxTMNonUnique,
             chbxGenDisableXML,
+            chbxGenDisable3DSDBXML,
             chbxGenNameForTID,
             chbxTMDefaultTicket,
             chbxTMDefaultOutput,
@@ -98,6 +99,8 @@ public class SettingsController implements Initializable{
             chbxGenNameForTID.setSelected(PropertiesHandler.getProperties("titlename").equals("yes"));
         if(PropertiesHandler.getProperties("disablexml") != null)
             chbxGenDisableXML.setSelected(PropertiesHandler.getProperties("disablexml").equals("yes"));
+        if(PropertiesHandler.getProperties("disable3dsdbxml") != null)
+            chbxGenDisable3DSDBXML.setSelected(PropertiesHandler.getProperties("disable3dsdbxml").equals("yes"));
         if(PropertiesHandler.getProperties("noindvfolders") != null)
             chbxGenNoIndvFolders.setSelected(PropertiesHandler.getProperties("noindvfolders").equals("yes"));
 
@@ -293,6 +296,14 @@ public class SettingsController implements Initializable{
         }else{
             PropertiesHandler.setProperties("no", "downloadsystemtitles");
         }
+    }
+
+    @FXML
+    protected void chbxGenClickedDisable3DSDBXML(){
+        if(chbxGenDisable3DSDBXML.isSelected())
+            PropertiesHandler.setProperties("yes", "disable3dsdbxml");
+        else
+            PropertiesHandler.setProperties("no", "disable3dsdbxml");
     }
 
     @FXML

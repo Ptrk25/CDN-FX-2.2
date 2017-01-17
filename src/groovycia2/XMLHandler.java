@@ -36,26 +36,33 @@ public class XMLHandler {
 
     public void getXMLFileFromServer()
     {
-        try
-        {
-            DebugLogger.log("INIT: Downloading 3dsdb newest XML database...", Level.INFO);
-            File tempFile = File.createTempFile("3dsdb", Long.toString(System.nanoTime()));
-            ReadableByteChannel in = Channels.newChannel(new URL("http://3dsdb.com/xml.php").openStream());
-            FileOutputStream fos = new FileOutputStream(tempFile);
-            FileChannel out = fos.getChannel();
 
-            out.transferFrom(in, 0L, Long.MAX_VALUE);
-            in.close();
-            out.close();
-            fos.close();
-
-            this.pathToDB = tempFile.getPath();
-            DebugLogger.log("INIT: Download completed!", Level.INFO);
-        }
-        catch (Exception e)
+        if(PropertiesHandler.getProperties("disable3dsdbxml") != null)
         {
-            DebugLogger.log("INIT: Download failed! Using local file", Level.WARNING);
-            getXMLFileFromJar();
+            if(PropertiesHandler.getProperties("disable3dsdbxml").equals("no"))
+            {
+                try
+                {
+                    DebugLogger.log("INIT: Downloading 3dsdb newest XML database...", Level.INFO);
+                    File tempFile = File.createTempFile("3dsdb", Long.toString(System.nanoTime()));
+                    ReadableByteChannel in = Channels.newChannel(new URL("http://3dsdb.com/xml.php").openStream());
+                    FileOutputStream fos = new FileOutputStream(tempFile);
+                    FileChannel out = fos.getChannel();
+
+                    out.transferFrom(in, 0L, Long.MAX_VALUE);
+                    in.close();
+                    out.close();
+                    fos.close();
+
+                    this.pathToDB = tempFile.getPath();
+                    DebugLogger.log("INIT: Download completed!", Level.INFO);
+                }
+                catch (Exception e)
+                {
+                    DebugLogger.log("INIT: Download failed! Using local file", Level.WARNING);
+                    getXMLFileFromJar();
+                }
+            }
         }
     }
 

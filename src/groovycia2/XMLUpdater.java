@@ -12,8 +12,7 @@ import java.util.logging.Level;
 
 public class XMLUpdater {
 
-    private final String updateSite = "http://ptrk25.github.io/GroovyFX/database/check.txt";
-    private final String updateURL = "http://ptrk25.github.io/GroovyFX/database/community.xml";
+    private final String updateURL = "http://ptrk25.github.io/GroovyFX/database/";
 
     public XMLUpdater(){
 
@@ -27,7 +26,7 @@ public class XMLUpdater {
 
         DebugLogger.log("Checking for XML update...", Level.INFO);
         try{
-            BufferedReader in = new BufferedReader(new InputStreamReader(new URL(updateSite).openStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(new URL(updateURL + "version.txt").openStream()));
             String inputLine, content = "", xmlversion;
 
             while((inputLine = in.readLine()) != null){
@@ -70,7 +69,7 @@ public class XMLUpdater {
             DebugLogger.log("Updating XML...", Level.INFO);
             String path = Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath();
             path = path.substring(1, path.lastIndexOf("/")) + "/";
-            ReadableByteChannel in = Channels.newChannel(new URL(updateURL).openStream());
+            ReadableByteChannel in = Channels.newChannel(new URL(updateURL + "community.xml").openStream());
             FileChannel out = new FileOutputStream((path+"community.xml")).getChannel();
 
             out.transferFrom(in, 0, Long.MAX_VALUE);
